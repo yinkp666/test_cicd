@@ -1,5 +1,7 @@
 stages:
   - nonprod
+  - preprod
+  - prod
 
 nonprod:ansible-test:
   stage: nonprod
@@ -7,4 +9,22 @@ nonprod:ansible-test:
     - nonprod
   image: ansible/centos7-ansible
   script:
-    - echo "hello"
+    - echo "hello nonprod"
+
+
+preprod:ansible-test:
+  stage: preprod
+  tags:
+    - preprod
+  image: ansible/centos7-ansible
+  script:
+    - echo "hello preprod"
+
+
+prod:ansible-test:
+  stage: prod
+  tags:
+    - prod
+  image: ansible/centos7-ansible
+  script:
+    - echo "hello prod"

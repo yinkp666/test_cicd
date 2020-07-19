@@ -1,0 +1,10 @@
+stages:
+  - nonprod
+
+nonprod:ansible-test:
+  stage: nonprod
+  tags:
+    - worker1
+  image: ansible/centos7-ansible
+  script:
+    - echo "hello"

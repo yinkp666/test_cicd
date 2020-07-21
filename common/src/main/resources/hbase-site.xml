@@ -1,0 +1,24 @@
+<configuration>
+
+    <property>
+        <name>hbase.client.connection.impl</name>
+        <value>com.google.cloud.bigtable.hbase1_x.BigtableConnection</value>
+    </property>
+    <property>
+        <name>google.bigtable.project.id</name>
+        <value>cn-data-engineering-playground</value>
+    </property>
+    <property>
+        <name>google.bigtable.instance.id</name>
+        <value>awx-bigtable</value>
+    </property>
+    <!--
+      Include the following property if you are using app profiles.
+      If you do not include the following property, the connection uses the
+      default app profile.
+    -->
+    <property>
+        <name>google.bigtable.auth.json.keyfile</name>
+        <value>/Users/jim.yang/Documents/kafka_2.12-2.3.0/config/client_secret.json</value>
+    </property>
+</configuration>

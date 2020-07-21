@@ -1,0 +1,45 @@
+---
+- hosts: all
+  remote_user: flink
+  tasks:
+    - name: create job 1st folder
+      command: mkdir /home/flink/flink-jobs
+      tags: create job 1st folder
+
+    - name: create pa job folder
+      command: mkdir /home/flink/flink-jobs/pa-performance-metrics
+      tags: create pa job folder
+
+    - name: config  flink-job-conf
+      copy:
+        src: /var/local/nonprod/{{ cluster }}/config/flink/config.yaml
+        dest: /home/flink/flink-jobs/pa-performance-metrics
+      tags: update config
+
+    - name: config  flink-job-schema
+      copy:
+        src: /var/local/nonprod/{{ cluster }}/config/flink/pa_data_schema.json
+        dest: /home/flink/flink-jobs/pa-performance-metrics
+      tags: update config
+
+    - name: copy pa job
+      copy:
+        src: /var/local/common-1.0-SNAPSHOT.jar
+        dest: /home/flink/flink-jobs/pa-performance-metrics
+      tags: update jar
+      notify:
+        - stop flink-job
+        - start flink-job
+
+
+  handlers:
+   - name: stop flink-job
+     shell: echo "stop flink job" > /home/flink/cicd_test.log
+
+   - name: start flink-job
+     shell: echo "start flink job" > /home/flink/cicd_test.log
+
+
+
+
+

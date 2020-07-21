@@ -1,0 +1,58 @@
+name: test
+kafkaSources:
+  -
+    kafka:
+      bootstrap.servers:  data-nonprod-1:9092
+      group.id: flink_consumer_7
+      auto.offset.reset:  earliest
+      zookeeper.connect:  data-nonprod-1:2181
+    format:
+      type: avro
+      properties:
+        avroSchema: '{"type":"record","name":"RateDTO","namespace":"com.airwallex","fields":[{"name":"rate","type":["null","long"],"default":null},{"name":"currency","type":["null","string"],"default":null},{"name":"mytime","type":["null",{"type":"long","logicalType":"timestamp-millis"}],"default":null}]}'
+    rowtime: mytime
+    topic: test.jim008
+    watermark:
+      maxlatency: 10
+      timeUnit:  SECONDS
+    table:  rates
+
+  -
+    kafka:
+      bootstrap.servers:  data-nonprod-1:9092
+      group.id: flink_consumer_49
+      auto.offset.reset:  latest
+      zookeeper.connect:  data-nonprod-1:2181
+    format:
+      type: csv
+      properties:
+        fields: 'id,name,ctime'
+        types:  'STRING,STRING,LONG'
+        delimiter: ','
+
+    rowtime: ctime
+    topic: foo
+    watermark:
+      maxlatency: 10
+      timeUnit:  SECONDS
+    table:  accounts
+    temporal:
+      function: Names
+      primaryKey: id
+queryPlans:
+
+  - query:  " SELECT r.*,acc.*    FROM   rates AS r,  LATERAL TABLE (Names(r.ti)) AS acc   WHERE r.currency = acc.id "
+    name: currency-max-window
+    sink:
+      props:
+        topic: foo2
+        semantic: NONE
+      instance: kafka-1
+      mode: append
+sinkInstances:
+  - instance: kafka-1
+    type: kafka
+    props:
+      bootstrap.servers:  data-nonprod-1:9092
+  - instance: print-1
+    type: console

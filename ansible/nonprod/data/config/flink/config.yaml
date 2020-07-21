@@ -1,0 +1,87 @@
+name: pa-metrics
+kafkaSources:
+  -
+    kafka:
+      bootstrap.servers:  us-data-kafka-1.preprod.awx.im:19092
+      group.id: flink_consumer_pa2
+      auto.offset.reset:  earliest
+      security.protocol: SASL_SSL
+      sasl.mechanism: SCRAM-SHA-256
+      sasl.jaas.config: org.apache.kafka.common.security.scram.ScramLoginModule required username="dataUser" password="dataPass";
+      ssl.truststore.location: /home/flink/truststore.jks
+      ssl.truststore.password: airwallex
+      ssl.endpoint.identification.algorithm: ''
+    format:
+      type: avro
+      properties:
+        avroSchemaFile: /home/flink/pa/pa_data_schema.json
+    rowtime: createdAt
+    topic: staging-hk.gcp_hk_staging_auqirer_core_event
+    watermark:
+      maxlatency: 10
+      timeUnit:  SECONDS
+    table:  pa
+    isKeyedStream: true
+    keyField: paymentIntentId
+  -
+    kafka:
+      bootstrap.servers:  us-data-kafka-1.preprod.awx.im:19092
+      group.id: flink_consumer_pa5
+      auto.offset.reset:  earliest
+      security.protocol: SASL_SSL
+      sasl.mechanism: SCRAM-SHA-256
+      sasl.jaas.config: org.apache.kafka.common.security.scram.ScramLoginModule required username="dataUser" password="dataPass";
+      ssl.truststore.location: /home/flink/truststore.jks
+      ssl.truststore.password: airwallex
+      ssl.endpoint.identification.algorithm: ''
+    format:
+      type: csv
+      properties:
+        fields: 'timestamp_utc_full,rate_source,from,currency,mid,inverse'
+        types: 'SQL_TIMESTAMP,STRING,STRING,STRING,STRING,STRING'
+        delimiter: ','
+    rowtime: timestamp_utc_full
+    topic: test123
+    watermark:
+      maxlatency: 10
+      timeUnit:  SECONDS
+    table:  rate
+    temporal:
+      function: Rates
+      primaryKey: to
+
+queryPlans:
+  - query: "SELECT p.*,r.* FROM pa AS p, LATERAL TABLE (Rates(p.createdAt)) AS r WHERE p.paymentAttemptResponseDto.currency = r.currency"
+    name: pa_rate
+    sink:
+      props:
+        topic: test.aaron
+        semantic: AT_LEAST_ONCE
+      instance: kafka-1
+      mode: append
+  - query:  "SELECT    merchantAccountId,    SUM(CASE        WHEN eventType='payment_attempt.received' THEN 1      ELSE      0    END      ) AS attempt_received_count,    SUM(CASE        WHEN eventType='payment_attempt.authorized' THEN 1      ELSE      0    END      ) AS attempt_authorized_count,    SUM(CASE        WHEN eventType='payment_attempt.authorized' THEN 1      ELSE      0    END      ) AS attempt_authorized_count,    SUM(CASE        WHEN eventType='payment_attempt.authentication_redirected' THEN CAST(paymentAttemptResponseDto.amount AS FLOAT)      ELSE      0    END      ) AS attempt_authentication_redirected_count,    SUM(CASE        WHEN eventType='payment_attempt.capture_requested' THEN 1      ELSE      0    END      ) AS attempt_captured_count,    SUM(CASE        WHEN eventType='payment_attempt.capture_requested' THEN CAST(paymentAttemptResponseDto.capturedAmount AS FLOAT)      ELSE      0    END      ) AS attempt_captured_amount,    SUM(CASE        WHEN eventType='refund.succeeded' THEN 1      ELSE      0    END      ) AS refunded_count,    SUM(CASE        WHEN eventType='refund.succeeded' THEN CAST( refundResponseDto.refundAmount AS FLOAT)      ELSE      0    END      ) AS refunded_amount,    SUM(CASE        WHEN pa_tags['payment_intent_created']=TRUE THEN 1      ELSE      0    END      ) AS intent_created_count,    SUM(CASE        WHEN pa_tags['payment_intent_attempt_received']=TRUE THEN 1      ELSE      0    END      ) AS intent_with_attempt_received_count,    MAX(createdAt) AS max_created_at  FROM    pa  GROUP BY    merchantAccountId"
+    name: pa_metrics
+    sink:
+      props:
+        topic: test.aaron2
+        semantic: AT_LEAST_ONCE
+      instance: kafka-1
+      mode: json-retract
+
+sinkInstances:
+  - instance: kafka-1
+    type: kafka
+    props:
+      bootstrap.servers:  us-data-kafka-1.preprod.awx.im:19092
+      security.protocol: SASL_SSL
+      sasl.mechanism: SCRAM-SHA-256
+      sasl.jaas.config: org.apache.kafka.common.security.scram.ScramLoginModule required username="dataUser" password="dataPass";
+      ssl.truststore.location: /home/flink/truststore.jks
+      ssl.truststore.password: airwallex
+      ssl.endpoint.identification.algorithm: ''
+  - instance: print-1
+    type: console
+checkpoint:
+  enable.checkpoint: true
+  checkpoint.interval:  1000
+  state.backend: gs://flink-state-backend-preprod/flinkcheckpoint

@@ -1,0 +1,1491 @@
+{
+  "type": "record",
+  "name": "PaymentCoreEventMessageDto",
+  "namespace": "com.airwallex.pmtacpt.paycore.client.event",
+  "fields": [
+    {
+      "name": "paymentAttemptResponseDto",
+      "type": [
+        "null",
+        {
+          "type": "record",
+          "name": "PaymentAttemptResponseDto",
+          "namespace": "com.airwallex.pmtacpt.paycore.client.dto.attempt",
+          "fields": [
+            {
+              "name": "shortId",
+              "type": [
+                "null",
+                "string"
+              ],
+              "default": null
+            },
+            {
+              "name": "paymentAttemptId",
+              "type": "string"
+            },
+            {
+              "name": "paymentMethod",
+              "type": "string"
+            },
+            {
+              "name": "paymentMethodType",
+              "type": "string"
+            },
+            {
+              "name": "merchantConfig",
+              "type": [
+                "null",
+                "string"
+              ],
+              "default": null
+            },
+            {
+              "name": "paymentInstrument",
+              "type": [
+                "null",
+                {
+                  "type": "record",
+                  "name": "PaymentInstrumentResponseDto",
+                  "namespace": "com.airwallex.pmtacpt.paycore.client.dto.instrument",
+                  "fields": [
+                    {
+                      "name": "id",
+                      "type": "string"
+                    },
+                    {
+                      "name": "requestId",
+                      "type": "string"
+                    },
+                    {
+                      "name": "customerId",
+                      "type": [
+                        "null",
+                        "string"
+                      ],
+                      "default": null
+                    },
+                    {
+                      "name": "paymentMethod",
+                      "type": "string"
+                    },
+                    {
+                      "name": "paymentMethodType",
+                      "type": "string"
+                    },
+                    {
+                      "name": "source",
+                      "type": {
+                        "type": "record",
+                        "name": "Source",
+                        "fields": [
+                          {
+                            "name": "sourceType",
+                            "type": "string"
+                          },
+                          {
+                            "name": "card",
+                            "type": [
+                              "null",
+                              {
+                                "type": "record",
+                                "name": "Card",
+                                "fields": [
+                                  {
+                                    "name": "country",
+                                    "type": [
+                                      "null",
+                                      "string"
+                                    ],
+                                    "default": null
+                                  },
+                                  {
+                                    "name": "funding",
+                                    "type": [
+                                      "null",
+                                      "string"
+                                    ],
+                                    "default": null
+                                  },
+                                  {
+                                    "name": "brand",
+                                    "type": [
+                                      "null",
+                                      "string"
+                                    ],
+                                    "default": null
+                                  },
+                                  {
+                                    "name": "cvcCheck",
+                                    "type": [
+                                      "null",
+                                      "string"
+                                    ],
+                                    "default": null
+                                  },
+                                  {
+                                    "name": "avsCheck",
+                                    "type": [
+                                      "null",
+                                      "string"
+                                    ],
+                                    "default": null
+                                  },
+                                  {
+                                    "name": "cardBin",
+                                    "type": "string"
+                                  },
+                                  {
+                                    "name": "last4",
+                                    "type": "string"
+                                  },
+                                  {
+                                    "name": "expMonth",
+                                    "type": "string"
+                                  },
+                                  {
+                                    "name": "expYear",
+                                    "type": "string"
+                                  },
+                                  {
+                                    "name": "holderName",
+                                    "type": [
+                                      "null",
+                                      "string"
+                                    ],
+                                    "default": null
+                                  },
+                                  {
+                                    "name": "panToken",
+                                    "type": "string"
+                                  },
+                                  {
+                                    "name": "binInfo",
+                                    "type": [
+                                      "null",
+                                      {
+                                        "type": "record",
+                                        "name": "BIN",
+                                        "namespace": "com.airwallex.bin.lookup.domain.entities",
+                                        "fields": [
+                                          {
+                                            "name": "cardBrand",
+                                            "type": "string"
+                                          },
+                                          {
+                                            "name": "issuingOrganization",
+                                            "type": "string"
+                                          },
+                                          {
+                                            "name": "cardType",
+                                            "type": "string"
+                                          },
+                                          {
+                                            "name": "cardCategory",
+                                            "type": "string"
+                                          },
+                                          {
+                                            "name": "issuingCountryISOName",
+                                            "type": "string"
+                                          },
+                                          {
+                                            "name": "issuingCountryISOCodeA2",
+                                            "type": "string"
+                                          },
+                                          {
+                                            "name": "issuingCountryISOCodeA3",
+                                            "type": "string"
+                                          },
+                                          {
+                                            "name": "issuingCountryISONumber",
+                                            "type": "string"
+                                          },
+                                          {
+                                            "name": "issuingOrgWebsite",
+                                            "type": "string"
+                                          },
+                                          {
+                                            "name": "issuingOrgPhone",
+                                            "type": "string"
+                                          },
+                                          {
+                                            "name": "panReserved",
+                                            "type": "string"
+                                          },
+                                          {
+                                            "name": "commercial",
+                                            "type": "string"
+                                          },
+                                          {
+                                            "name": "regulated",
+                                            "type": "string"
+                                          }
+                                        ]
+                                      }
+                                    ],
+                                    "default": null
+                                  },
+                                  {
+                                    "name": "fingerPrint",
+                                    "type": [
+                                      "null",
+                                      "string"
+                                    ],
+                                    "default": null
+                                  }
+                                ]
+                              }
+                            ],
+                            "default": null
+                          },
+                          {
+                            "name": "wechat",
+                            "type": [
+                              "null",
+                              {
+                                "type": "record",
+                                "name": "Wechat",
+                                "fields": [
+                                  {
+                                    "name": "outTradeNo",
+                                    "type": [
+                                      "null",
+                                      "string"
+                                    ],
+                                    "default": null
+                                  },
+                                  {
+                                    "name": "transactionId",
+                                    "type": [
+                                      "null",
+                                      "string"
+                                    ],
+                                    "default": null
+                                  },
+                                  {
+                                    "name": "chargeType",
+                                    "type": [
+                                      "null",
+                                      "string"
+                                    ],
+                                    "default": null
+                                  },
+                                  {
+                                    "name": "flow",
+                                    "type": [
+                                      "null",
+                                      "string"
+                                    ],
+                                    "default": null
+                                  },
+                                  {
+                                    "name": "openId",
+                                    "type": [
+                                      "null",
+                                      "string"
+                                    ],
+                                    "default": null
+                                  },
+                                  {
+                                    "name": "appId",
+                                    "type": [
+                                      "null",
+                                      "string"
+                                    ],
+                                    "default": null
+                                  }
+                                ]
+                              }
+                            ],
+                            "default": null
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "name": "billing",
+                      "type": [
+                        "null",
+                        {
+                          "type": "record",
+                          "name": "Billing",
+                          "fields": [
+                            {
+                              "name": "dateOfBirth",
+                              "type": [
+                                "null",
+                                "string"
+                              ],
+                              "default": null
+                            },
+                            {
+                              "name": "email",
+                              "type": [
+                                "null",
+                                "string"
+                              ],
+                              "default": null
+                            },
+                            {
+                              "name": "firstName",
+                              "type": [
+                                "null",
+                                "string"
+                              ],
+                              "default": null
+                            },
+                            {
+                              "name": "lastName",
+                              "type": [
+                                "null",
+                                "string"
+                              ],
+                              "default": null
+                            },
+                            {
+                              "name": "phoneNumber",
+                              "type": [
+                                "null",
+                                "string"
+                              ],
+                              "default": null
+                            },
+                            {
+                              "name": "address",
+                              "type": [
+                                "null",
+                                {
+                                  "type": "record",
+                                  "name": "Address",
+                                  "namespace": "com.airwallex.pmtacpt.paycore.client.dto.common",
+                                  "fields": [
+                                    {
+                                      "name": "country",
+                                      "type": [
+                                        "null",
+                                        "string"
+                                      ],
+                                      "default": null
+                                    },
+                                    {
+                                      "name": "state",
+                                      "type": [
+                                        "null",
+                                        "string"
+                                      ],
+                                      "default": null
+                                    },
+                                    {
+                                      "name": "city",
+                                      "type": [
+                                        "null",
+                                        "string"
+                                      ],
+                                      "default": null
+                                    },
+                                    {
+                                      "name": "street",
+                                      "type": [
+                                        "null",
+                                        "string"
+                                      ],
+                                      "default": null
+                                    },
+                                    {
+                                      "name": "postalCode",
+                                      "type": [
+                                        "null",
+                                        "string"
+                                      ],
+                                      "default": null
+                                    }
+                                  ]
+                                }
+                              ],
+                              "default": null
+                            }
+                          ]
+                        }
+                      ],
+                      "default": null
+                    },
+                    {
+                      "name": "status",
+                      "type": [
+                        "null",
+                        {
+                          "type": "enum",
+                          "name": "PaymentMethodStatus",
+                          "symbols": [
+                            "CREATED",
+                            "VERIFIED",
+                            "DISABLED",
+                            "EXPIRED",
+                            "INVALID"
+                          ]
+                        }
+                      ],
+                      "default": null
+                    },
+                    {
+                      "name": "createdAt",
+                      "type": {
+                        "type": "long",
+                        "logicalType": "java-sql-timestamp-millis"
+                      }
+                    },
+                    {
+                      "name": "updatedAt",
+                      "type": {
+                        "type": "long",
+                        "logicalType": "java-sql-timestamp-millis"
+                      }
+                    },
+                    {
+                      "name": "liveMode",
+                      "type": "boolean"
+                    }
+                  ]
+                }
+              ],
+              "default": null
+            },
+            {
+              "name": "device",
+              "type": [
+                "null",
+                {
+                  "type": "record",
+                  "name": "Device",
+                  "namespace": "com.airwallex.pmtacpt.paycore.client.dto.transaction",
+                  "fields": [
+                    {
+                      "name": "deviceId",
+                      "type": "string"
+                    },
+                    {
+                      "name": "deviceModel",
+                      "type": [
+                        "null",
+                        "string"
+                      ],
+                      "default": null
+                    },
+                    {
+                      "name": "sdkVersion",
+                      "type": [
+                        "null",
+                        "string"
+                      ],
+                      "default": null
+                    },
+                    {
+                      "name": "platformType",
+                      "type": [
+                        "null",
+                        "string"
+                      ],
+                      "default": null
+                    },
+                    {
+                      "name": "deviceOS",
+                      "type": [
+                        "null",
+                        "string"
+                      ],
+                      "default": null
+                    },
+                    {
+                      "name": "browserInfo",
+                      "type": [
+                        "null",
+                        "string"
+                      ],
+                      "default": null
+                    },
+                    {
+                      "name": "ipAddress",
+                      "type": [
+                        "null",
+                        "string"
+                      ],
+                      "default": null
+                    },
+                    {
+                      "name": "hostName",
+                      "type": [
+                        "null",
+                        "string"
+                      ],
+                      "default": null
+                    },
+                    {
+                      "name": "cookiesAccepted",
+                      "type": [
+                        "null",
+                        "string"
+                      ],
+                      "default": null
+                    },
+                    {
+                      "name": "httpBrowserEmail",
+                      "type": [
+                        "null",
+                        "string"
+                      ],
+                      "default": null
+                    },
+                    {
+                      "name": "httpBrowserType",
+                      "type": [
+                        "null",
+                        "string"
+                      ],
+                      "default": null
+                    },
+                    {
+                      "name": "ipNetworkAddress",
+                      "type": [
+                        "null",
+                        "string"
+                      ],
+                      "default": null
+                    },
+                    {
+                      "name": "browserDetail",
+                      "type": [
+                        "null",
+                        {
+                          "type": "record",
+                          "name": "BrowserDetail",
+                          "fields": [
+                            {
+                              "name": "userAgent",
+                              "type": "string"
+                            },
+                            {
+                              "name": "acceptHeader",
+                              "type": "string"
+                            },
+                            {
+                              "name": "language",
+                              "type": "string"
+                            },
+                            {
+                              "name": "colorDepth",
+                              "type": "int"
+                            },
+                            {
+                              "name": "screenHeight",
+                              "type": "int"
+                            },
+                            {
+                              "name": "screenWidth",
+                              "type": "int"
+                            },
+                            {
+                              "name": "timeZoneOffset",
+                              "type": "int"
+                            },
+                            {
+                              "name": "javaEnabled",
+                              "type": "boolean"
+                            }
+                          ]
+                        }
+                      ],
+                      "default": null
+                    }
+                  ]
+                }
+              ],
+              "default": null
+            },
+            {
+              "name": "processorId",
+              "type": "string"
+            },
+            {
+              "name": "amount",
+              "type": [
+                "null",
+                {
+                  "type": "string",
+                  "java-class": "java.math.BigDecimal"
+                }
+              ],
+              "default": null
+            },
+            {
+              "name": "captureReason",
+              "type": [
+                "null",
+                "string"
+              ],
+              "default": null
+            },
+            {
+              "name": "capturedAmount",
+              "type": {
+                "type": "string",
+                "java-class": "java.math.BigDecimal"
+              }
+            },
+            {
+              "name": "refundedAmount",
+              "type": {
+                "type": "string",
+                "java-class": "java.math.BigDecimal"
+              }
+            },
+            {
+              "name": "currency",
+              "type": "string"
+            },
+            {
+              "name": "status",
+              "type": "string"
+            },
+            {
+              "name": "providerOriginalResponseCode",
+              "type": [
+                "null",
+                "string"
+              ],
+              "default": null
+            },
+            {
+              "name": "authorizationCode",
+              "type": [
+                "null",
+                "string"
+              ],
+              "default": null
+            },
+            {
+              "name": "createdAt",
+              "type": {
+                "type": "long",
+                "logicalType": "java-sql-timestamp-millis"
+              }
+            },
+            {
+              "name": "updatedAt",
+              "type": {
+                "type": "long",
+                "logicalType": "java-sql-timestamp-millis"
+              }
+            },
+            {
+              "name": "customerId",
+              "type": [
+                "null",
+                "string"
+              ],
+              "default": null
+            },
+            {
+              "name": "domainSecureResult",
+              "type": [
+                "null",
+                {
+                  "type": "record",
+                  "name": "DomainSecureResult",
+                  "namespace": "com.airwallex.pmtacpt.paycore.client.dto.common",
+                  "fields": [
+                    {
+                      "name": "result",
+                      "type": [
+                        "null",
+                        "string"
+                      ],
+                      "default": null
+                    },
+                    {
+                      "name": "enrolled",
+                      "type": [
+                        "null",
+                        "string"
+                      ],
+                      "default": null
+                    },
+                    {
+                      "name": "eciFlag",
+                      "type": [
+                        "null",
+                        "string"
+                      ],
+                      "default": null
+                    },
+                    {
+                      "name": "paResStatus",
+                      "type": [
+                        "null",
+                        "string"
+                      ],
+                      "default": null
+                    },
+                    {
+                      "name": "liabilityShift",
+                      "type": [
+                        "null",
+                        "string"
+                      ],
+                      "default": null
+                    },
+                    {
+                      "name": "cavv",
+                      "type": [
+                        "null",
+                        "string"
+                      ],
+                      "default": null
+                    },
+                    {
+                      "name": "xid",
+                      "type": [
+                        "null",
+                        "string"
+                      ],
+                      "default": null
+                    },
+                    {
+                      "name": "version",
+                      "type": [
+                        "null",
+                        "string"
+                      ],
+                      "default": null
+                    },
+                    {
+                      "name": "challengeCancellationReason",
+                      "type": [
+                        "null",
+                        "string"
+                      ],
+                      "default": null
+                    },
+                    {
+                      "name": "frictionless",
+                      "type": [
+                        "null",
+                        "string"
+                      ],
+                      "default": null
+                    }
+                  ]
+                }
+              ],
+              "default": null
+            },
+            {
+              "name": "fraudResult",
+              "type": [
+                "null",
+                {
+                  "type": "record",
+                  "name": "FraudResult",
+                  "namespace": "com.airwallex.pmtacpt.paycore.client.dto.common",
+                  "fields": [
+                    {
+                      "name": "fraudId",
+                      "type": [
+                        "null",
+                        "string"
+                      ],
+                      "default": null
+                    },
+                    {
+                      "name": "result",
+                      "type": [
+                        "null",
+                        "string"
+                      ],
+                      "default": null
+                    },
+                    {
+                      "name": "score",
+                      "type": [
+                        "null",
+                        "int"
+                      ],
+                      "default": null
+                    }
+                  ]
+                }
+              ],
+              "default": null
+            }
+          ]
+        }
+      ],
+      "default": null
+    },
+    {
+      "name": "paymentInstrumentResponseDto",
+      "type": [
+        "null",
+        "com.airwallex.pmtacpt.paycore.client.dto.instrument.PaymentInstrumentResponseDto"
+      ],
+      "default": null
+    },
+    {
+      "name": "paymentIntentResponseDto",
+      "type": [
+        "null",
+        {
+          "type": "record",
+          "name": "PaymentIntentResponseDto",
+          "namespace": "com.airwallex.pmtacpt.paycore.client.dto.intent",
+          "fields": [
+            {
+              "name": "shortId",
+              "type": "string"
+            },
+            {
+              "name": "id",
+              "type": "string"
+            },
+            {
+              "name": "requestId",
+              "type": "string"
+            },
+            {
+              "name": "customerId",
+              "type": [
+                "null",
+                "string"
+              ],
+              "default": null
+            },
+            {
+              "name": "totalAmount",
+              "type": {
+                "type": "string",
+                "java-class": "java.math.BigDecimal"
+              }
+            },
+            {
+              "name": "supplementaryAmount",
+              "type": [
+                "null",
+                {
+                  "type": "string",
+                  "java-class": "java.math.BigDecimal"
+                }
+              ],
+              "default": null
+            },
+            {
+              "name": "currency",
+              "type": "string"
+            },
+            {
+              "name": "merchantOrderId",
+              "type": [
+                "null",
+                "string"
+              ],
+              "default": null
+            },
+            {
+              "name": "order",
+              "type": [
+                "null",
+                {
+                  "type": "record",
+                  "name": "PurchaseOrder",
+                  "namespace": "com.airwallex.pmtacpt.paycore.client.dto.order",
+                  "fields": [
+                    {
+                      "name": "products",
+                      "type": [
+                        "null",
+                        {
+                          "type": "array",
+                          "items": {
+                            "type": "record",
+                            "name": "PhysicalProduct",
+                            "fields": [
+                              {
+                                "name": "type",
+                                "type": "string"
+                              },
+                              {
+                                "name": "code",
+                                "type": "string"
+                              },
+                              {
+                                "name": "name",
+                                "type": "string"
+                              },
+                              {
+                                "name": "sku",
+                                "type": "string"
+                              },
+                              {
+                                "name": "quantity",
+                                "type": "int"
+                              },
+                              {
+                                "name": "unitPrice",
+                                "type": {
+                                  "type": "string",
+                                  "java-class": "java.math.BigDecimal"
+                                }
+                              },
+                              {
+                                "name": "desc",
+                                "type": "string"
+                              },
+                              {
+                                "name": "url",
+                                "type": "string"
+                              }
+                            ]
+                          },
+                          "java-class": "java.util.List"
+                        }
+                      ],
+                      "default": null
+                    },
+                    {
+                      "name": "shippingData",
+                      "type": [
+                        "null",
+                        {
+                          "type": "record",
+                          "name": "Shipping",
+                          "fields": [
+                            {
+                              "name": "firstName",
+                              "type": [
+                                "null",
+                                "string"
+                              ],
+                              "default": null
+                            },
+                            {
+                              "name": "lastName",
+                              "type": [
+                                "null",
+                                "string"
+                              ],
+                              "default": null
+                            },
+                            {
+                              "name": "phone",
+                              "type": [
+                                "null",
+                                "string"
+                              ],
+                              "default": null
+                            },
+                            {
+                              "name": "shippingMethod",
+                              "type": [
+                                "null",
+                                "string"
+                              ],
+                              "default": null
+                            },
+                            {
+                              "name": "address",
+                              "type": [
+                                "null",
+                                "com.airwallex.pmtacpt.paycore.client.dto.common.Address"
+                              ],
+                              "default": null
+                            }
+                          ]
+                        }
+                      ],
+                      "default": null
+                    },
+                    {
+                      "name": "invoiceHeader",
+                      "type": [
+                        "null",
+                        {
+                          "type": "record",
+                          "name": "InvoiceHeader",
+                          "fields": [
+                            {
+                              "name": "giftIndicator",
+                              "type": "boolean"
+                            },
+                            {
+                              "name": "returnsAccepted",
+                              "type": "boolean"
+                            },
+                            {
+                              "name": "tenderType",
+                              "type": "string"
+                            }
+                          ]
+                        }
+                      ],
+                      "default": null
+                    }
+                  ]
+                }
+              ],
+              "default": null
+            },
+            {
+              "name": "email",
+              "type": [
+                "null",
+                "string"
+              ],
+              "default": null
+            },
+            {
+              "name": "phone",
+              "type": [
+                "null",
+                "string"
+              ],
+              "default": null
+            },
+            {
+              "name": "descriptor",
+              "type": [
+                "null",
+                "string"
+              ],
+              "default": null
+            },
+            {
+              "name": "status",
+              "type": "string"
+            },
+            {
+              "name": "capturedAmount",
+              "type": {
+                "type": "string",
+                "java-class": "java.math.BigDecimal"
+              }
+            },
+            {
+              "name": "paymentAttempt",
+              "type": [
+                "null",
+                "com.airwallex.pmtacpt.paycore.client.dto.attempt.PaymentAttemptResponseDto"
+              ],
+              "default": null
+            },
+            {
+              "name": "paymentMethods",
+              "type": [
+                "null",
+                {
+                  "type": "array",
+                  "items": {
+                    "type": "record",
+                    "name": "PaymentMethod",
+                    "namespace": "com.airwallex.pmtacpt.paycore.client.dto.common",
+                    "fields": [
+                      {
+                        "name": "id",
+                        "type": "string"
+                      },
+                      {
+                        "name": "type",
+                        "type": "string"
+                      },
+                      {
+                        "name": "name",
+                        "type": "string"
+                      },
+                      {
+                        "name": "schema",
+                        "type": "string"
+                      }
+                    ]
+                  },
+                  "java-class": "java.util.List"
+                }
+              ],
+              "default": null
+            },
+            {
+              "name": "paymentInstruments",
+              "type": [
+                "null",
+                {
+                  "type": "array",
+                  "items": "com.airwallex.pmtacpt.paycore.client.dto.instrument.PaymentInstrumentResponseDto",
+                  "java-class": "java.util.List"
+                }
+              ],
+              "default": null
+            },
+            {
+              "name": "createdAt",
+              "type": {
+                "type": "long",
+                "logicalType": "java-sql-timestamp-millis"
+              }
+            },
+            {
+              "name": "updatedAt",
+              "type": {
+                "type": "long",
+                "logicalType": "java-sql-timestamp-millis"
+              }
+            },
+            {
+              "name": "cancelledAt",
+              "type": [
+                "null",
+                {
+                  "type": "long",
+                  "logicalType": "java-sql-timestamp-millis"
+                }
+              ],
+              "default": null
+            },
+            {
+              "name": "cancellationReason",
+              "type": [
+                "null",
+                "string"
+              ],
+              "default": null
+            },
+            {
+              "name": "recurringType",
+              "type": [
+                "null",
+                "string"
+              ],
+              "default": null
+            },
+            {
+              "name": "initialPaymentIntentId",
+              "type": [
+                "null",
+                "string"
+              ],
+              "default": null
+            },
+            {
+              "name": "liveMode",
+              "type": "boolean"
+            }
+          ]
+        }
+      ],
+      "default": null
+    },
+    {
+      "name": "refundResponseDto",
+      "type": [
+        "null",
+        {
+          "type": "record",
+          "name": "RefundResponseDto",
+          "namespace": "com.airwallex.pmtacpt.paycore.client.dto.refund",
+          "fields": [
+            {
+              "name": "shortId",
+              "type": "string"
+            },
+            {
+              "name": "id",
+              "type": "string"
+            },
+            {
+              "name": "requestId",
+              "type": "string"
+            },
+            {
+              "name": "paymentIntentId",
+              "type": [
+                "null",
+                "string"
+              ],
+              "default": null
+            },
+            {
+              "name": "paymentAttemptId",
+              "type": "string"
+            },
+            {
+              "name": "refundAmount",
+              "type": {
+                "type": "string",
+                "java-class": "java.math.BigDecimal"
+              }
+            },
+            {
+              "name": "refundCurrency",
+              "type": "string"
+            },
+            {
+              "name": "reason",
+              "type": [
+                "null",
+                "string"
+              ],
+              "default": null
+            },
+            {
+              "name": "status",
+              "type": "string"
+            },
+            {
+              "name": "createdAt",
+              "type": {
+                "type": "long",
+                "logicalType": "java-sql-timestamp-millis"
+              }
+            },
+            {
+              "name": "updatedAt",
+              "type": {
+                "type": "long",
+                "logicalType": "java-sql-timestamp-millis"
+              }
+            },
+            {
+              "name": "liveMode",
+              "type": "boolean"
+            }
+          ]
+        }
+      ],
+      "default": null
+    },
+    {
+      "name": "customerResponseDto",
+      "type": [
+        "null",
+        {
+          "type": "record",
+          "name": "CustomerResponseDto",
+          "namespace": "com.airwallex.pmtacpt.paycore.client.dto.customer",
+          "fields": [
+            {
+              "name": "customerId",
+              "type": "string"
+            },
+            {
+              "name": "merchantRequestId",
+              "type": "string"
+            },
+            {
+              "name": "merchantCustomerId",
+              "type": "string"
+            },
+            {
+              "name": "firstName",
+              "type": [
+                "null",
+                "string"
+              ],
+              "default": null
+            },
+            {
+              "name": "lastName",
+              "type": [
+                "null",
+                "string"
+              ],
+              "default": null
+            },
+            {
+              "name": "email",
+              "type": "string"
+            },
+            {
+              "name": "phone",
+              "type": "string"
+            },
+            {
+              "name": "registerViaSocialMedia",
+              "type": "boolean"
+            },
+            {
+              "name": "registrationDate",
+              "type": [
+                "null",
+                {
+                  "type": "long",
+                  "logicalType": "java-util-date"
+                }
+              ],
+              "default": null
+            },
+            {
+              "name": "firstSuccessfulOrderDate",
+              "type": [
+                "null",
+                {
+                  "type": "long",
+                  "logicalType": "java-util-date"
+                }
+              ],
+              "default": null
+            },
+            {
+              "name": "paymentInstruments",
+              "type": [
+                "null",
+                {
+                  "type": "array",
+                  "items": "com.airwallex.pmtacpt.paycore.client.dto.instrument.PaymentInstrumentResponseDto",
+                  "java-class": "java.util.List"
+                }
+              ],
+              "default": null
+            },
+            {
+              "name": "created",
+              "type": [
+                "null",
+                {
+                  "type": "long",
+                  "logicalType": "java-sql-timestamp-millis"
+                }
+              ],
+              "default": null
+            },
+            {
+              "name": "updated",
+              "type": [
+                "null",
+                {
+                  "type": "long",
+                  "logicalType": "java-sql-timestamp-millis"
+                }
+              ],
+              "default": null
+            },
+            {
+              "name": "address",
+              "type": [
+                "null",
+                "string"
+              ],
+              "default": null
+            },
+            {
+              "name": "customerType",
+              "type": [
+                "null",
+                "string"
+              ],
+              "default": null
+            },
+            {
+              "name": "liveMode",
+              "type": "boolean"
+            }
+          ]
+        }
+      ],
+      "default": null
+    },
+    {
+      "name": "eventId",
+      "type": "string"
+    },
+    {
+      "name": "eventType",
+      "type": "string"
+    },
+    {
+      "name": "merchantAccountId",
+      "type": "string"
+    },
+    {
+      "name": "merchantRequestId",
+      "type": "string"
+    },
+    {
+      "name": "paymentIntentId",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null
+    },
+    {
+      "name": "paymentIntentShortId",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null
+    },
+    {
+      "name": "paymentAttemptId",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null
+    },
+    {
+      "name": "paymentAttemptShortId",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null
+    },
+    {
+      "name": "paymentDirectiveId",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null
+    },
+    {
+      "name": "outboundRequestId",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null
+    },
+    {
+      "name": "eventSource",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null
+    },
+    {
+      "name": "messageVersion",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null
+    },
+    {
+      "name": "createdAt",
+      "type": {
+        "type": "long",
+        "logicalType": "java-sql-timestamp-millis"
+      }
+    },
+    {
+      "name": "error",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null
+    },
+    {
+      "name": "liveMode",
+      "type": "boolean"
+    }
+  ]
+}

@@ -15,6 +15,7 @@ nonprod:ansible-test:
     - mv ansible/test.repo  /etc/yum.repos.d/
     - yum clean all
     - yum install  sshpass -y
+    - yum install wget -y
     - wget http://repos.fedorapeople.org/repos/dchen/apache-maven/epel-apache-maven.repo -O /etc/yum.repos.d/epel-apache-maven.repo
     - yum -y install apache-maven
     - mv  ansible/hosts  /etc/ansible/hosts
@@ -37,6 +38,7 @@ nonprod:ansible-apply:
     - mv ansible/test.repo  /etc/yum.repos.d/
     - yum clean all
     - yum install  sshpass -y
+    - yum install wget -y
     - wget http://repos.fedorapeople.org/repos/dchen/apache-maven/epel-apache-maven.repo -O /etc/yum.repos.d/epel-apache-maven.repo
     - yum -y install apache-maven
     - mv  ansible/hosts  /etc/ansible/hosts

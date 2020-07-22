@@ -9,7 +9,7 @@ nonprod:ansible-test:
     DEPLOY_ENV: ansible/nonprod
   tags:
     - nonprod
-  image: yinkp/centos7-ansible
+  image: yinkp/centos7-ansible2
   script:
     - mv  ansible/hosts  /etc/ansible/hosts
     - mv  ansible/ansible.cfg  /etc/ansible/ansible.cfg
@@ -25,7 +25,7 @@ nonprod:ansible-apply:
     DEPLOY_ENV: ansible/nonprod
   tags:
     - nonprod
-  image: yinkp/centos7-ansible
+  image: yinkp/centos7-ansible2
   script:
     - mv  ansible/hosts  /etc/ansible/hosts
     - mv  ansible/ansible.cfg  /etc/ansible/ansible.cfg

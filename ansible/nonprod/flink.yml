@@ -3,11 +3,11 @@
   remote_user: flink
   tasks:
     - name: create job 1st folder
-      command: mkdir /home/flink/flink-jobs
+      shell: mkdir /home/flink/flink-jobs
       tags: create job 1st folder
 
     - name: create pa job folder
-      command: mkdir /home/flink/flink-jobs/pa-performance-metrics
+      shell: mkdir /home/flink/flink-jobs/pa-performance-metrics
       tags: create pa job folder
 
     - name: config  flink-job-conf

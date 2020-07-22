@@ -1,0 +1,6 @@
+---
+- hosts: nonprod-flink
+  remote_user: flink
+  tasks:
+    - name: test
+      shell: echo "hello" > ~/test

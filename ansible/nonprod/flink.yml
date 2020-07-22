@@ -1,5 +1,5 @@
 ---
-- hosts: all
+- hosts: nonprod-flink
   remote_user: flink
   tasks:
     - name: create job 1st folder

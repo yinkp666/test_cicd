@@ -16,7 +16,7 @@ nonprod:ansible-test:
     - cp -r  ${DEPLOY_ENV}  /var/local
     - sh build/build.sh
     - cp common/target/common-1.0-SNAPSHOT.jar /var/local
-    - ansible-playbook  --check  --vault-password-file  ansible/pwdfile ${DEPLOY_ENV}/flink.yml  -e "cluster=data"
+    - ansible-playbook  --check  --vault-password-file  ansible/pwdfile ${DEPLOY_ENV}/flink.yml  -e "cluster=data" -v
 
 nonprod:ansible-apply:
   stage: nonprod
@@ -32,7 +32,7 @@ nonprod:ansible-apply:
     - cp -r  ${DEPLOY_ENV}  /var/local
     - sh build/build.sh
     - cp common/target/common-1.0-SNAPSHOT.jar /var/local
-    - ansible-playbook  --vault-password-file ansible/pwdfile ${DEPLOY_ENV}/flink.yml  -e "cluster=data"
+    - ansible-playbook  --vault-password-file ansible/pwdfile ${DEPLOY_ENV}/flink.yml  -e "cluster=data" -v
 
 preprod:ansible-test:
   stage: preprod

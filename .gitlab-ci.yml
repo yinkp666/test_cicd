@@ -34,6 +34,23 @@ nonprod:ansible-apply:
     - cp common/target/common-1.0-SNAPSHOT.jar /var/local
     - ansible-playbook  --vault-password-file ansible/pwdfile ${DEPLOY_ENV}/flink.yml  -e "cluster=data"
 
+
+nonprod:ansible-apply1:
+  stage: nonprod
+  when: manual
+  variables:
+    DEPLOY_ENV: ansible/nonprod
+  tags:
+    - nonprod1
+  image: yinkp/centos7-ansible2
+  script:
+    - mv  ansible/hosts  /etc/ansible/hosts
+    - mv  ansible/ansible.cfg  /etc/ansible/ansible.cfg
+    - cp -r  ${DEPLOY_ENV}  /var/local
+    - sh build/build.sh
+    - cp common/target/common-1.0-SNAPSHOT.jar /var/local
+    - ansible-playbook  --vault-password-file ansible/pwdfile ${DEPLOY_ENV}/flink.yml  -e "cluster=data"
+
 preprod:ansible-test:
   stage: preprod
   tags:

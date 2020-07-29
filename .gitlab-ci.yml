@@ -23,7 +23,7 @@ nonprod:ansible-apply:
   when: manual
   variables:
     DEPLOY_ENV: ansible/nonprod
-    test: {}
+    test: {"a":"a","b":"b"}
   tags:
     - nonprod
   image: yinkp/centos7-ansible2
